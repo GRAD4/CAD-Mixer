@@ -17,3 +17,25 @@ To add a contribution make a fork of the project, notify which issue you are wor
 ## Communication
 The communication for this project happens on our [CAD Mixer Community Discord Server](https://discord.gg/3ErkNJZmsa) you can join by clicking on this invite: https://discord.gg/3ErkNJZmsa
 
+## Available converters
+### DXF to PNG
+This program converts DXF files to PNG image format.
+
+#### Usage of the command-line interface (CLI)
+One may run the CLI version of the application as follows:
+```bash
+python main.py --cli -i input.dxf -o output.png
+```
+or
+```bash
+python main.py --cli --input input.dxf --output output.png
+```
+Both input and output files are set relative to the script's root directory, i.e. should be located in the same directory.
+
+#### Setup with Anaconda
+This assumes that you have the Conda package installed.
+* Create a virtual environment: `conda env create --name dxf2png -f environment.yml`
+* Activate the environment: `conda activate dxf2png`
+* Go to the dxf2png folder: `cd dxf2png`
+* Run the program: `python main.py`
+* Deactivate the environment when done: `conda deactivate`
