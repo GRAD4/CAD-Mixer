@@ -1,8 +1,0 @@
-ezdxf == 0.15.1
-imutils == 0.5.4
-natsort == 7.1.1
-opencv-python == 4.5.1.48
-Pillow == 8.1.0
-python-dateutil == 2.8.1
-python-decouple == 3.3
-PyQt5 == 5.8.2 --install-option="--no-deps"
