@@ -34,8 +34,8 @@ Both input and output files are set relative to the script's root directory, i.e
 
 #### Setup with Anaconda
 This assumes that you have the Conda package installed.
-* Create a virtual environment: `conda env create --name dxf2png -f environment.yml`
-* Activate the environment: `conda activate dxf2png`
+* Create a virtual environment: `conda env create --name cad-mixer -f environment.yml`
+* Activate the environment: `conda activate cad-mixer`
 * Go to the dxf2png folder: `cd dxf2png`
 * Run the program: `python main.py`
 * Deactivate the environment when done: `conda deactivate`
