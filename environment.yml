@@ -1,0 +1,18 @@
+name: cad-mixer
+channels:
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  # General dependencies
+  - python = 3.7.9
+  - python-dateutil = 2.8.1
+  - python-decouple = 3.3
+  - python_abi = 3.7
+  # DXF2PNG
+  - ezdxf = 0.15.1
+  - imutils = 0.5.4
+  - natsort = 7.1.1
+  - opencv = 3.4.2
+  - pillow = 8.1.0
+  - pyqt = 5.9.2
