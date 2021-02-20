@@ -9,18 +9,20 @@ Usage:
 or
     python main.py --input input.dxf --output output.png
 """
+# Standard imports
 import os
-import cv2
+import argparse
+from datetime import datetime
 import json
-import ezdxf
 import shutil
+# Generic imports
+import cv2
+import ezdxf
 import imutils
 import matplotlib.pyplot as plt
-from datetime import datetime
 from natsort import natsort_keygen
 from ezdxf.addons.drawing import Frontend, RenderContext
 from ezdxf.addons.drawing.matplotlib import MatplotlibBackend
-import argparse
 
 natsort_key = natsort_keygen()
 
@@ -131,6 +133,7 @@ def clear_folders(folders):
             except Exception as e:
                 print('Failed to delete %s. Reason: %s' % (file_path, e))
 
+# Loads batches
 def load_batches(*args):
     global Data_JSON_Contents
     for j in args:
@@ -144,7 +147,7 @@ def load_batches(*args):
         args[0].append('NON_BATCH')
 
 if __name__ == '__main__':
-    # if images directory doesn't exist we create it
+    # if images directory doesn\'t exist we create it
     if not os.path.exists('Images'): os.makedirs('Images')
     if not os.path.exists('Print'): os.makedirs('Print')
     if not os.path.exists('Capture'): os.makedirs('Capture')
@@ -163,9 +166,9 @@ if __name__ == '__main__':
                     help = "Input DXF file name", metavar = "FILE")
     parser.add_argument("-o", dest = "output_filename",
                     help = "Output PNG file name", metavar = "FILE")
-    args = parser.parse_args()
-    input_filename = str(args.input_filename)
-    output_filename = str(args.output_filename)
+    cli_args = parser.parse_args()
+    input_filename = str(cli_args.input_filename)
+    output_filename = str(cli_args.output_filename)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     files = [input_filename]
     converter = Converter(img_res = 300)
