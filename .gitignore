@@ -172,3 +172,9 @@ dxf2png/Print/
 dxf2png/Capture/
 dxf2png/Backups/
 dxf2png/Batches/ # generated when the app is ran
+
+# Any possible dxf/png files that are used for testing
+dxf2png/*.dxf
+dxf2png/*.DXF
+dxf2png/*png
+dxf2png/*.PNG
