@@ -68,10 +68,9 @@ Attributes:
         a name of the job process
 '''
 class Converter():
-    def __init__(self, file, batch_name):
-        self.file = file
+    def __init__(self, batch_name):
         # TODO: consider removing batch_name, it's not very useful for CLI
-        self.selected_batch_name = batch_name 
+        self.selected_batch_name = batch_name
         self.default_img_format = '.png'
         self.default_img_res = 300
     '''
@@ -181,7 +180,7 @@ if __name__ == '__main__':
     output_filename = str(args.output_filename)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     files = [input_filename]
-    converter = Converter(files, 'NON_BATCH')
+    converter = Converter('NON_BATCH')
     print(f'Converting DXF file {dir_path}/{input_filename} to PNG ...')
     converter.convert_dxf2img(name = input_filename,
                               path = dir_path + "/" + input_filename,
