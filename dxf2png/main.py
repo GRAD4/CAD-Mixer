@@ -143,29 +143,23 @@ if __name__ == '__main__':
     SAVED_DATA_JSON_FILES = os.listdir('Batches/')
     
     parser = argparse.ArgumentParser(description = 'This application allows converting DXF to PNG')
-    parser.add_argument('--cli',
-            help = 'Runs the application in Command Line Interface (CLI). Example:\npython main.py --cli -i input.dxf -o output.png',
-            action = 'store_true')
     parser.add_argument("-i", dest = "input_filename",
                     help = "Input DXF file name", metavar = "FILE")
     parser.add_argument("-o", dest = "output_filename",
                     help = "Output PNG file name", metavar = "FILE")
     args = parser.parse_args()
     
-    if (args.cli):
-        input_filename = str(args.input_filename)
-        output_filename = str(args.output_filename)
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        files = [input_filename]
-        converter = Converter(files, 'NON_BATCH')
-        print(f'Converting DXF file {dir_path}/{input_filename} to PNG ...')
-        converter.convert_dxf2img(name = input_filename,
-                                  path = dir_path + "/" + input_filename,
-                                  save_to = dir_path + "/" + output_filename,
-                                  img_format = ".png",
-                                  img_res = 300)
-        print('Conversion is successful')
-        print(f'File written to {dir_path}/{output_filename}')
-    else:
-        print('You shouldn\'t be able to see this error but you do. Congratilations!')
-    
+    input_filename = str(args.input_filename)
+    output_filename = str(args.output_filename)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    files = [input_filename]
+    converter = Converter(files, 'NON_BATCH')
+    print(f'Converting DXF file {dir_path}/{input_filename} to PNG ...')
+    converter.convert_dxf2img(name = input_filename,
+                              path = dir_path + "/" + input_filename,
+                              save_to = dir_path + "/" + output_filename,
+                              img_format = ".png",
+                              img_res = 300)
+    print('Conversion is successful')
+    print(f'File written to {dir_path}/{output_filename}')
+       
