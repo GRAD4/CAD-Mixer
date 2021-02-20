@@ -91,7 +91,7 @@ class Converter():
             an ID of the converted image. Has no use yet but can be used eventually
             if we'd like to convert multiple DXF at a time
     '''
-    def convert_dxf2img(self, name, path, save_to, img_format, img_res, index = 1):
+    def convert_dxf2img(self, path, save_to, img_format, img_res, index = 1):
         # Checking for positive output resolution
         if img_res <= 0:
             raise ValueError('The file resolution must be a positive number')
@@ -112,23 +112,22 @@ class Converter():
             # TODO: This is terrible from the user feedback point of view.
             # It was done by Qt previously.
             return
-        else:
-            fig = plt.figure()
-            ax = fig.add_axes([0, 0, 1, 1])
-            ctx = RenderContext(doc)
-            ctx.set_current_layout(msp)
-            ctx.current_layout.set_colors(bg = '#FFFFFF')
-            # TODO: The following line hardcodes the lineweight which causes some convertions
-            # look weird. Sad...
-            out = MatplotlibBackend(ax, params={"lineweight_scaling": 6})
-            Frontend(ctx, out).draw_layout(msp, finalize = True)
-            fig.savefig(save_to, dpi = img_res)
-            im = cv2.imread(save_to)
-            hei, wid, c = im.shape
-            if hei > wid:
-                region = imutils.rotate_bound(im, 90)
-                cv2.imwrite(save_to, region)
-            plt.close(fig)
+        fig = plt.figure()
+        ax = fig.add_axes([0, 0, 1, 1])
+        ctx = RenderContext(doc)
+        ctx.set_current_layout(msp)
+        ctx.current_layout.set_colors(bg = '#FFFFFF')
+        # TODO: The following line hardcodes the lineweight which causes some convertions
+        # look weird. Sad...
+        out = MatplotlibBackend(ax, params={"lineweight_scaling": 6})
+        Frontend(ctx, out).draw_layout(msp, finalize = True)
+        fig.savefig(save_to, dpi = img_res)
+        im = cv2.imread(save_to)
+        hei, wid, c = im.shape
+        if hei > wid:
+            region = imutils.rotate_bound(im, 90)
+            cv2.imwrite(save_to, region)
+        plt.close(fig)
 
 # Cleans working directories if called
 def clear_folders(folders):
@@ -182,8 +181,7 @@ if __name__ == '__main__':
     files = [input_filename]
     converter = Converter('NON_BATCH')
     print(f'Converting DXF file {dir_path}/{input_filename} to PNG ...')
-    converter.convert_dxf2img(name = input_filename,
-                              path = dir_path + "/" + input_filename,
+    converter.convert_dxf2img(path = dir_path + "/" + input_filename,
                               save_to = dir_path + "/" + output_filename,
                               img_format = ".png",
                               img_res = 300)
