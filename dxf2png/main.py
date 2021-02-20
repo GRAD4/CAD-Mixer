@@ -1,18 +1,10 @@
 import os
-import sys
 import cv2
 import json
 import ezdxf
 import shutil
-import ctypes
 import imutils
-import threading
-import subprocess
-from zipfile import ZipFile 
-import zipfile
 import matplotlib.pyplot as plt
-from PIL import Image
-from functools import partial
 from datetime import datetime
 from natsort import natsort_keygen
 from ezdxf.addons.drawing import Frontend, RenderContext
