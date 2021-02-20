@@ -15,4 +15,3 @@ dependencies:
   - natsort = 7.1.1
   - opencv = 3.4.2
   - pillow = 8.1.0
-  - pyqt = 5.9.2
