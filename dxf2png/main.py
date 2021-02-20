@@ -54,14 +54,58 @@ batch_index_val = []
 
 batch_group_box_GUI = []
 
-company = 'TheCodingJs'
+company = 'GRAD4 Inc.'
 title = 'DXF to PNG'
-version = 'v1.0.3'
+version = 'v0.2'
 
 latest_update_date = datetime(2020, 11, 27, 2, 21, 6)
 latest_update_date_formated = latest_update_date.strftime(
     "%A %B %d %Y at %X%p")
 
+# The converter job class
+class Converter():
+    def __init__(self, file, batch_name):
+        self.file = file
+        self.selected_batch_name = batch_name
+        self.default_img_format = '.png'
+        self.default_img_res = 300
+    
+    # The function that handles the actual convertion
+    def convert_dxf2img(self, name, path, save_to, img_format, img_res, index = 1):
+        # Checking for positive output resolution
+        if img_res <= 0:
+            raise ValueError('The file resolution must be a positive number')
+        if not os.path.exists(path):
+            raise ValueError('File does not exist')
+        # Checking the file extentions
+        input_extention = os.path.splitext(input_filename)[1].lower()
+        if (input_extention != '.dxf'):
+            raise ValueError('Incorrect input file format: the input file must be DXF')
+        output_extention = os.path.splitext(output_filename)[1].lower()
+        if (output_extention != '.png'):
+            raise ValueError('Incorrect output file format: the output file mush be PNG')
+        # Reading the DXF file
+        doc = ezdxf.readfile(path)
+        msp = doc.modelspace()
+        auditor = doc.audit()
+        if len(auditor.errors) != 0: # Checking for reading errors
+            return # TODO: This is terrible from the user feedback point of view. It was done by Qt previously. 
+        else:
+            fig = plt.figure()
+            ax = fig.add_axes([0, 0, 1, 1])
+            ctx = RenderContext(doc)
+            ctx.set_current_layout(msp)
+            ctx.current_layout.set_colors(bg = '#FFFFFF')
+
+            out = MatplotlibBackend(ax, params={"lineweight_scaling": 6}) # This is not good, some converted files look weird because of the hardcoded lineweight...
+            Frontend(ctx, out).draw_layout(msp, finalize = True)
+            fig.savefig(save_to, dpi = img_res)
+            im = cv2.imread(save_to)
+            hei, wid, c = im.shape
+            if hei > wid:
+                region = imutils.rotate_bound(im, 90)
+                cv2.imwrite(save_to, region)
+            plt.close(fig)
 
 class ConvertThread(QThread):
     data_downloaded = pyqtSignal(object)
@@ -2090,7 +2134,7 @@ if __name__ == '__main__':
         output_filename = str(args.output_filename)
         dir_path = os.path.dirname(os.path.realpath(__file__))
         files = [input_filename]
-        converter = ConvertThread(files, 'NON_BATCH')
+        converter = Converter(files, 'NON_BATCH')
         print(f'Converting DXF file {dir_path}/{input_filename} to PNG ...')
         converter.convert_dxf2img(name = input_filename,
                                   path = dir_path + "/" + input_filename,
