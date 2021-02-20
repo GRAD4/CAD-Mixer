@@ -1,3 +1,14 @@
+"""
+Copyright (c) 2021 Nikita Letov (letovnn@gmail.com)
+Distributed under the MIT software license, see the accompanying
+file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+This script converts DXF files to PNG file.
+Usage:
+    python main.py -i input.dxf -o output.png
+or
+    python main.py --input input.dxf --output output.png
+"""
 import os
 import cv2
 import json
@@ -24,7 +35,6 @@ with open(SETTINGS_FILE, 'r') as f:
     Data_JSON = 'Batches/' + f.read()
 
 Data_JSON_Contents = []
-
 
 BATCHES = []
 NON_BATCHES = ['NON_BATCH']
@@ -55,7 +65,6 @@ class Converter():
         self.selected_batch_name = batch_name
         self.default_img_format = '.png'
         self.default_img_res = 300
-    
     # The function that handles the actual convertion
     def convert_dxf2img(self, name, path, save_to, img_format, img_res, index = 1):
         # Checking for positive output resolution
@@ -65,25 +74,28 @@ class Converter():
             raise ValueError('File does not exist')
         # Checking the file extentions
         input_extention = os.path.splitext(input_filename)[1].lower()
-        if (input_extention != '.dxf'):
+        if input_extention != '.dxf':
             raise ValueError('Incorrect input file format: the input file must be DXF')
         output_extention = os.path.splitext(output_filename)[1].lower()
-        if (output_extention != '.png'):
+        if output_extention != '.png':
             raise ValueError('Incorrect output file format: the output file mush be PNG')
         # Reading the DXF file
         doc = ezdxf.readfile(path)
         msp = doc.modelspace()
         auditor = doc.audit()
         if len(auditor.errors) != 0: # Checking for reading errors
-            return # TODO: This is terrible from the user feedback point of view. It was done by Qt previously. 
+            # TODO: This is terrible from the user feedback point of view.
+            # It was done by Qt previously.
+            return
         else:
             fig = plt.figure()
             ax = fig.add_axes([0, 0, 1, 1])
             ctx = RenderContext(doc)
             ctx.set_current_layout(msp)
             ctx.current_layout.set_colors(bg = '#FFFFFF')
-
-            out = MatplotlibBackend(ax, params={"lineweight_scaling": 6}) # This is not good, some converted files look weird because of the hardcoded lineweight...
+            # TODO: The following line hardcodes the lineweight which causes some convertions
+            # look weird. Sad...
+            out = MatplotlibBackend(ax, params={"lineweight_scaling": 6})
             Frontend(ctx, out).draw_layout(msp, finalize = True)
             fig.savefig(save_to, dpi = img_res)
             im = cv2.imread(save_to)
