@@ -58,14 +58,40 @@ latest_update_date = datetime(2020, 11, 27, 2, 21, 6)
 latest_update_date_formated = latest_update_date.strftime(
     "%A %B %d %Y at %X%p")
 
-# The converter job class
+'''
+A converter job class. Initializes the convertion and its parameters.
+
+Attributes:
+    file : str
+        input file name
+    batch_name: str
+        a name of the job process
+'''
 class Converter():
     def __init__(self, file, batch_name):
         self.file = file
-        self.selected_batch_name = batch_name
+        # TODO: consider removing batch_name, it's not very useful for CLI
+        self.selected_batch_name = batch_name 
         self.default_img_format = '.png'
         self.default_img_res = 300
-    # The function that handles the actual convertion
+    '''
+    A function that handles the actual convertion.
+
+    Parameters:
+        name : str
+            input file name
+        path : str
+            input file path
+        save_to : str
+            outpu file name
+        img_format : str
+            output image format (can be \".png\" only for now)
+        img_res : int
+            output image resolution in dots per inch (DPI)
+        index : int
+            an ID of the converted image. Has no use yet but can be used eventually
+            if we'd like to convert multiple DXF at a time
+    '''
     def convert_dxf2img(self, name, path, save_to, img_format, img_res, index = 1):
         # Checking for positive output resolution
         if img_res <= 0:
@@ -145,14 +171,12 @@ if __name__ == '__main__':
     # Load data file
     load_batches(BATCHES)
     SAVED_DATA_JSON_FILES = os.listdir('Batches/')
-    
     parser = argparse.ArgumentParser(description = 'This application allows converting DXF to PNG')
     parser.add_argument("-i", dest = "input_filename",
                     help = "Input DXF file name", metavar = "FILE")
     parser.add_argument("-o", dest = "output_filename",
                     help = "Output PNG file name", metavar = "FILE")
     args = parser.parse_args()
-    
     input_filename = str(args.input_filename)
     output_filename = str(args.output_filename)
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -166,4 +190,3 @@ if __name__ == '__main__':
                               img_res = 300)
     print('Conversion is successful')
     print(f'File written to {dir_path}/{output_filename}')
-       
