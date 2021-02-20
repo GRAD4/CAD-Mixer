@@ -64,36 +64,25 @@ A converter job class. Initializes the convertion and its parameters.
 Attributes:
     file : str
         input file name
-    batch_name: str
-        a name of the job process
+    img_res : int
+        output image resolution in dots per inch (DPI)
 '''
 class Converter():
-    def __init__(self, batch_name):
-        # TODO: consider removing batch_name, it's not very useful for CLI
-        self.selected_batch_name = batch_name
+    def __init__(self, img_res):
         self.default_img_format = '.png'
-        self.default_img_res = 300
+        self.img_res = img_res
     '''
     A function that handles the actual convertion.
 
     Parameters:
-        name : str
-            input file name
         path : str
             input file path
         save_to : str
-            outpu file name
-        img_format : str
-            output image format (can be \".png\" only for now)
-        img_res : int
-            output image resolution in dots per inch (DPI)
-        index : int
-            an ID of the converted image. Has no use yet but can be used eventually
-            if we'd like to convert multiple DXF at a time
+            output file name
     '''
-    def convert_dxf2img(self, path, save_to, img_format, img_res, index = 1):
+    def convert_dxf2img(self, path, save_to):
         # Checking for positive output resolution
-        if img_res <= 0:
+        if self.img_res <= 0:
             raise ValueError('The file resolution must be a positive number')
         if not os.path.exists(path):
             raise ValueError('File does not exist')
@@ -121,7 +110,7 @@ class Converter():
         # look weird. Sad...
         out = MatplotlibBackend(ax, params={"lineweight_scaling": 6})
         Frontend(ctx, out).draw_layout(msp, finalize = True)
-        fig.savefig(save_to, dpi = img_res)
+        fig.savefig(save_to, dpi = self.img_res)
         im = cv2.imread(save_to)
         hei, wid, c = im.shape
         if hei > wid:
@@ -179,11 +168,9 @@ if __name__ == '__main__':
     output_filename = str(args.output_filename)
     dir_path = os.path.dirname(os.path.realpath(__file__))
     files = [input_filename]
-    converter = Converter('NON_BATCH')
+    converter = Converter(img_res = 300)
     print(f'Converting DXF file {dir_path}/{input_filename} to PNG ...')
     converter.convert_dxf2img(path = dir_path + "/" + input_filename,
-                              save_to = dir_path + "/" + output_filename,
-                              img_format = ".png",
-                              img_res = 300)
+                              save_to = dir_path + "/" + output_filename)
     print('Conversion is successful')
     print(f'File written to {dir_path}/{output_filename}')
