@@ -32,6 +32,14 @@ python main.py --input input.dxf --output output.png
 ```
 Both input and output files are set relative to the script's root directory, i.e. should be located in the same directory.
 
+#### Setup with Virtualenv
+* Create a virtual environment: `virtualenv -p /usr/bin/python3 cad-mixer`
+* Activate the environment: `source cad-mixer/bin/activate`
+* Install the requirements (PIP is required): `pip install -r requirements.txt`
+* Go to the dxf2png folder: `cd dxf2png`
+* Run the probram: `python main.py`
+* Deactivate the environment when done: `deactivate`
+
 #### Setup with Anaconda
 This assumes that you have the Conda package installed.
 * Create a virtual environment: `conda env create --name cad-mixer -f environment.yml`
