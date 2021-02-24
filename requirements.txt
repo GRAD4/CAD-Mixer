@@ -1,0 +1,6 @@
+ezdxf == 0.15.1
+imutils == 0.5.4
+matplotlib == 3.3.4
+natsort == 7.1.1
+opencv-python == 4.5.1.48
+pillow == 8.1.0
