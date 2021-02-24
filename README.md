@@ -17,6 +17,14 @@ To add a contribution make a fork of the project, notify which issue you are wor
 ## Communication
 The communication for this project happens on our [CAD Mixer Community Discord Server](https://discord.gg/3ErkNJZmsa) you can join by clicking on this invite: https://discord.gg/3ErkNJZmsa
 
+
+## CI/CD
+We use Github Actions to triggers some continuous integration steps. So far we have the following:
+- Linting with flake8
+- Run tests with pytest
+
+It's important to add the proper tests when you create a new functionality to have sufficient coverage. We might also change testing framework if we happen to move from python to C++. However at the time of writing dxf2png main function is in python!
+
 ## Available converters
 ### DXF to PNG
 This program converts DXF files to PNG image format.
