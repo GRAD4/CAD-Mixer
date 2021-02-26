@@ -44,6 +44,7 @@ Both input and output files are set relative to the script's root directory, i.e
 * Create a virtual environment: `virtualenv -p /usr/bin/python3 cad-mixer`
 * Activate the environment: `source cad-mixer/bin/activate`
 * Install the requirements (PIP is required): `pip install -r requirements.txt`
+* Extra step for ArchLinux: PyInstaller doesn't work on ArchLinux as intended in some cases as mentioned in [this issue here](https://github.com/pyinstaller/pyinstaller/issues/5540). A workaround is provided in a bash script and can be ran simply as `chmod +x arch_pyinstaller.sh && bash arch_pyinstaller.sh`
 * Go to the dxf2png folder: `cd dxf2png`
 * Run the probram: `python main.py`
 * Deactivate the environment when done: `deactivate`
