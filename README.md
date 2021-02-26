@@ -44,7 +44,6 @@ Both input and output files are set relative to the script's root directory, i.e
 * Create a virtual environment: `virtualenv -p /usr/bin/python3 cad-mixer`
 * Activate the environment: `source cad-mixer/bin/activate`
 * Install the requirements (PIP is required): `pip install -r requirements.txt`
-* Extra step for ArchLinux: PyInstaller doesn't work on ArchLinux as intended in some cases as mentioned in [this issue here](https://github.com/pyinstaller/pyinstaller/issues/5540). A workaround is provided in a bash script and can be ran simply as `chmod +x arch_pyinstaller.sh && bash arch_pyinstaller.sh`
 * Go to the dxf2png folder: `cd dxf2png`
 * Run the probram: `python main.py`
 * Deactivate the environment when done: `deactivate`
@@ -56,3 +55,17 @@ This assumes that you have the Conda package installed.
 * Go to the dxf2png folder: `cd dxf2png`
 * Run the program: `python main.py`
 * Deactivate the environment when done: `conda deactivate`
+
+### Building the binary executable
+
+This assumes that the dependencies were installed with PIP in a virtual environment. Conda handles dependencies in a trickier way and this might not work.
+
+* Extra step for ArchLinux: PyInstaller doesn't work on ArchLinux as intended in some cases as mentioned in [this issue here](https://github.com/pyinstaller/pyinstaller/issues/5540). A workaround is provided in a bash script and can be ran simply as `chmod +x arch_pyinstaller.sh && bash arch_pyinstaller.sh`
+* Go to the dxf2png folder (if not there already): `cd dxf2png`
+* Run the installation: `pyinstaller -n "dxf2png" --onefile main.py`
+
+The resulting executable file is placed to the `dist` folder at the same path as `main.py`. It can be used as follows:
+```sh
+cd dist
+./dxf2png -i input_file.dxf -o output_file.png
+```
