@@ -38,7 +38,8 @@ python main.py --input input.dxf --output output.png
 ```
 Both input and output files are set relative to the script's root directory, i.e. should be located in the same directory.
 
-#### Preparing the environment
+#### Preparing the environment on Linux
+
 ##### Setup with Virtualenv
 * Create a virtual environment: `virtualenv -p /usr/bin/python3 cad-mixer`
 * Activate the environment: `source cad-mixer/bin/activate`
