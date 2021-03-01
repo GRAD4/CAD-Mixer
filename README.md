@@ -13,10 +13,8 @@ If you want to contribute to the project please join our discord server and let 
 
 To add a contribution make a fork of the project, notify which issue you are working on and then when ready make a Pull Request.
 
-
 ## Communication
 The communication for this project happens on our [CAD Mixer Community Discord Server](https://discord.gg/3ErkNJZmsa) you can join by clicking on this invite: https://discord.gg/3ErkNJZmsa
-
 
 ## CI/CD
 We use Github Actions to triggers some continuous integration steps. So far we have the following:
@@ -40,25 +38,22 @@ python main.py --input input.dxf --output output.png
 ```
 Both input and output files are set relative to the script's root directory, i.e. should be located in the same directory.
 
-#### Setup with Virtualenv
+#### Preparing the environment
+##### Setup with Virtualenv
 * Create a virtual environment: `virtualenv -p /usr/bin/python3 cad-mixer`
 * Activate the environment: `source cad-mixer/bin/activate`
 * Install the requirements (PIP is required): `pip install -r requirements.txt`
-* Go to the dxf2png folder: `cd dxf2png`
-* Run the probram: `python main.py`
 * Deactivate the environment when done: `deactivate`
 
-#### Setup with Anaconda
+##### Setup with Anaconda
 This assumes that you have the Conda package installed.
 * Create a virtual environment: `conda env create --name cad-mixer -f environment.yml`
 * Activate the environment: `conda activate cad-mixer`
-* Go to the dxf2png folder: `cd dxf2png`
-* Run the program: `python main.py`
 * Deactivate the environment when done: `conda deactivate`
 
-### Building the binary executable
+#### Building the binary executable
 
-This assumes that the dependencies were installed with PIP in a virtual environment. Conda handles dependencies in a trickier way and this might not work.
+This assumes that the dependencies were installed with PIP in a virtual environment (see the **Setup with Virtualenv** section). Conda handles dependencies in a trickier way and this might not work.
 
 * Extra step for ArchLinux: PyInstaller doesn't work on ArchLinux as intended in some cases as mentioned in [this issue here](https://github.com/pyinstaller/pyinstaller/issues/5540). A workaround is provided in a bash script and can be ran simply as `chmod +x arch_pyinstaller.sh && bash arch_pyinstaller.sh`
 * Go to the dxf2png folder (if not there already): `cd dxf2png`
