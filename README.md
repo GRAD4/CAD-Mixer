@@ -41,8 +41,8 @@ Both input and output files are set relative to the script's root directory, i.e
 #### Preparing the environment on Linux
 
 ##### Setup with Virtualenv
-* Create a virtual environment: `virtualenv -p /usr/bin/python3 cad-mixer`
-* Activate the environment: `source cad-mixer/bin/activate`
+* Create a virtual environment: `virtualenv -p /usr/bin/python3 venv`
+* Activate the environment: `source venv/bin/activate`
 * Install the requirements (PIP is required): `pip install -r requirements.txt`
 * Deactivate the environment when done: `deactivate`
 
