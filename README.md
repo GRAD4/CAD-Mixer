@@ -52,7 +52,7 @@ This assumes that the dependencies were installed with PIP in a virtual environm
 
 * Extra step for ArchLinux: PyInstaller doesn't work on ArchLinux as intended in some cases as mentioned in [this issue here](https://github.com/pyinstaller/pyinstaller/issues/5540). A workaround is provided in a bash script and can be ran simply as `chmod +x arch_pyinstaller.sh && bash arch_pyinstaller.sh`
 * Go to the dxf2png folder (if not there already): `cd dxf2png`
-* Run the installation: `pyinstaller --paths="./../venv/lib" -n dxf2png --exclude-module tkinter --onefile main.py`
+* Run the installation: `pyinstaller -F -w --paths "./../venv/lib/python3.8/site-packages/" --exclude-module tkinter --onefile -n dxf2png main.py`
 
 The resulting executable file is placed to the `dist` folder at the same path as `main.py`. It can be used as follows:
 ```sh
