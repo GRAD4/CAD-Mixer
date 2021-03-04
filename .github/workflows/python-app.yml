@@ -36,4 +36,5 @@ jobs:
         pytest
     - name: Test installation
       run: |
+        pip install pyinstaller
         pyinstaller -F -w --exclude-module tkinter --onefile -n dxf2png dxf2png/main.py
