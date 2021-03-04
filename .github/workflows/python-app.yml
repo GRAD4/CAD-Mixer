@@ -34,3 +34,9 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Set up the environment
+      run: |
+        pip install virtualenv
+        virtualenv -p /usr/bin/python3 venv
+        source /venv/bin/activate
+        pip install -r requirements.txt
