@@ -34,9 +34,6 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-    - name: Set up the environment
+    - name: Test installation
       run: |
-        pip install virtualenv
-        virtualenv -p /usr/bin/python3 venv
-        source /venv/bin/activate
-        pip install -r requirements.txt
+        pyinstaller -F -w --exclude-module tkinter --onefile -n dxf2png dxf2png/main.py
