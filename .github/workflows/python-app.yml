@@ -36,5 +36,8 @@ jobs:
         pytest
     - name: Test installation
       run: |
-        pip install pyinstaller
+        pip install -r requirements.txt
         pyinstaller -F -w --exclude-module tkinter --onefile -n dxf2png dxf2png/main.py
+        cd dist
+        wget https://www.bikecad.ca/faqFiles/dxf_from_inkscape.dxf
+        ./dxf2png -i dxf_from_inkscape.dxf -o test.png
