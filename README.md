@@ -46,12 +46,6 @@ Both input and output files are set relative to the script's root directory, i.e
 * Install the requirements (PIP is required): `pip install -r requirements.txt`
 * Deactivate the environment when done: `deactivate`
 
-##### Setup with Anaconda
-This assumes that you have the Conda package installed.
-* Create a virtual environment: `conda env create --name cad-mixer -f environment.yml`
-* Activate the environment: `conda activate cad-mixer`
-* Deactivate the environment when done: `conda deactivate`
-
 #### Building the binary executable
 
 This assumes that the dependencies were installed with PIP in a virtual environment (see the **Setup with Virtualenv** section). Conda handles dependencies in a trickier way and this might not work.
