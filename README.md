@@ -38,23 +38,29 @@ python main.py --input input.dxf --output output.png
 ```
 Both input and output files are set relative to the script's root directory, i.e. should be located in the same directory.
 
-#### Preparing the environment on Linux
-
-##### Setup with Virtualenv
+#### Automatic installation
 * Create a virtual environment: `virtualenv -p /usr/bin/python3 venv`
 * Activate the environment: `source venv/bin/activate`
-* Install the requirements (PIP is required): `python setup.py`
+* Run the atomatic installer: `python setup.py`
 * Deactivate the environment when done: `deactivate`
-
-#### Building the binary executable
-
-This assumes that the dependencies were installed with PIP in a virtual environment (see the **Setup with Virtualenv** section). Conda handles dependencies in a trickier way and this might not work.
-
-* Go to the dxf2png folder (if not there already): `cd dxf2png`
-* Run the installation: `pyinstaller -F -w --paths "./../venv/lib/python3.8/site-packages/" --exclude-module tkinter --onefile -n dxf2png main.py`
 
 The resulting executable file is placed to the `dist` folder at the same path as `main.py`. It can be used as follows:
 ```sh
 cd dist
 ./dxf2png -i input_file.dxf -o output_file.png
 ```
+
+#### Manual installation
+
+##### Prepare a virtual environment
+* Create a virtual environment: `virtualenv -p /usr/bin/python3 venv`
+* Activate the environment: `source venv/bin/activate`
+* Install the requirements (PIP is required): `pip install -r requirements.txt`
+* Deactivate the environment when done: `deactivate`
+
+##### Building the binary executable
+
+This assumes that the dependencies were installed with PIP in a virtual environment (see the **Setup with Virtualenv** section). Conda handles dependencies in a trickier way and this might not work.
+
+* Go to the dxf2png folder (if not there already): `cd dxf2png`
+* Run the installation: `pyinstaller -F -w --paths "./../venv/lib/python3.8/site-packages/" --exclude-module tkinter --onefile -n dxf2png main.py`
