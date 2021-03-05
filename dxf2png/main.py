@@ -1,5 +1,5 @@
 """
-Copyright (c) 2021 GRAD4 Inc.
+Copyright (c) 2021 Nikita Letov (letovnn@gmail.com)
 Distributed under the MIT software license, see the accompanying
 file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
