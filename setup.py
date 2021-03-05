@@ -21,6 +21,7 @@ def install(packages):
 if __name__ == '__main__':
     import platform
     import subprocess
+    import sys
 
     print("Starting the installation")
     install(_all_)
@@ -40,11 +41,16 @@ if __name__ == '__main__':
         install(darwin)
     print("The requirements are installed\n" +
             "Generating an executable file...")
+    python_ver = str(sys.version_info.major) + "." + str(sys.version_info.major)
     exe_generation = subprocess.run(["pyinstaller", "-F", "-w",
-        "--paths", "./../venv/lib/python3.8/site-packages/",
+        "--paths",
+        "./../venv/lib/python" + python_ver + "/site-packages/",
         "--exclude-module", "tkinter",
         "--onefile", "-n", "dxf2png",
         "dxf2png/main.py"])
-    print("Program exited with the return code: "
-            + str(exe_generation.returncode))
-    print("Installation successful")
+    return_code = exe_generation.returncode
+    if return_code == 0:
+        print("Installation successful")
+    if return_code == 1:
+        print("There were errors during the installation")
+    sys.exit(return_code)
