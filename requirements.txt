@@ -1,6 +1,8 @@
+# dxf2png
 ezdxf == 0.15.1
 imutils == 0.5.4
 matplotlib == 3.0.3
 natsort == 7.1.1
 opencv-python == 4.5.1.48
 pillow == 8.1.0
+
