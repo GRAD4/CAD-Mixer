@@ -178,3 +178,14 @@ dxf2png/*.dxf
 dxf2png/*.DXF
 dxf2png/*png
 dxf2png/*.PNG
+
+## STEP2STL
+
+# Any possible stp/stl files that are used for testing
+stp2stl/*.stp
+stp2stl/*.step
+stp2stl/*.stl
+stp2stl/*.STP
+stp2stl/*.STEP
+stp2stl/*.STL
+
