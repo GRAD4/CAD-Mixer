@@ -1,3 +1,17 @@
+"""
+Copyright (c) 2021 Nikita Letov (letovnn@gmail.com)
+Distributed under the MIT software license, see the accompanying
+file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+This script converts STEP files to STL file.
+Usage:
+    python main.py -i input.dxf -o output.png
+or
+    python main.py --input input.dxf --output output.png
+
+For more info see the PythonOCC Tutorial:
+https://pythonocc-doc.readthedocs.io/en/latest/convert/
+"""
 import os 
 from OCC.Core.STEPControl import STEPControl_Reader
 from OCC.Core.IFSelect import IFSelect_RetDone, IFSelect_ItemsByEntity
