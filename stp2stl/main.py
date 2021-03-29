@@ -35,11 +35,13 @@ def step_to_stl(input_filename, # input STEP (AP203/AP214 file) path
     if not os.path.exists(input_filename):
         raise ValueError('File does not exist')
     # Checking the file extensions
-    input_extenstion = os.path.splitext(input_filename)[1]
-    if (input_extenstion != ".STP") and (input_extenstion != ".stp") and (input_extenstion != ".STEP") and (input_extenstion != ".step"):
+    input_extension = os.path.splitext(input_filename)[1]
+    input_extension = input_extension.lower()
+    if (input_extension != ".stp") and (input_extension != ".step"):
         raise ValueError('Incorrect input file format. The input file must be STEP (or STP)')
-    output_extenstion = os.path.splitext(output_filename)[1]
-    if (output_extenstion != ".STL") and (output_extenstion != ".stl"):
+    output_extension = os.path.splitext(output_filename)[1]
+    output_extension = output_extension.lower()
+    if (output_extension != ".stl"):
         raise ValueError('Incorrect output file format. The output file must be STL')
 
     # Reading the file
@@ -66,6 +68,7 @@ def step_to_stl(input_filename, # input STEP (AP203/AP214 file) path
     mesh = BRepMesh_IncrementalMesh(myshape, definition)
     mesh.Perform()
     assert mesh.IsDone()
+    print(mesh)
     stl_writer.Write(myshape, stl_file)
     assert os.path.isfile(stl_file)
     print("Written")
