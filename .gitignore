@@ -161,6 +161,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# macOS generated folder files
+.DS_Store
+
 # Converter specifics
 
 ## DXF2PNG
