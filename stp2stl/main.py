@@ -82,6 +82,4 @@ if __name__ == '__main__':
     (options, args) = parser.parse_args()
     input_filename = str(options.input_filename)
     output_filename = str(options.output_filename)
-    print(input_filename)
-    print(output_filename)
     step_to_stl(input_filename, output_filename)
