@@ -25,6 +25,16 @@ It's important to add the proper tests when you create a new functionality to ha
 
 ## Available converters
 
+|                               |     |       |     |       |     |     |
+|:-:                            |:-:  |:-:    |:-:  |:-:    |:-:  |:-:  |
+| __Input__ / <br /> __Output__ | DXF | STEP  | STL | IGES  | PNG | PDF |
+| DXF                           |     |       |     |       | ❌  | ❌ |
+| STEP                          |     |       | ❌  | ❌   |     |     |
+| STL                           |     | ✔️    |     | ❌   |     |     |
+| IGES                          |     | ❌    | ❌ |       |     |     |
+| PNG                           | ✔️  |       |    |        |    | ❌  |
+| PDF                           | ❌  |       |    |        | ❌ |     |
+
 ### STEP to STL
 This program converts STEP files to STL files.
 
