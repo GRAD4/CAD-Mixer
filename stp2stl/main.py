@@ -13,12 +13,11 @@ For more info see the PythonOCC Tutorial:
 https://pythonocc-doc.readthedocs.io/en/latest/convert/
 """
 import os 
+from optparse import OptionParser
 from OCC.Core.STEPControl import STEPControl_Reader
 from OCC.Core.IFSelect import IFSelect_RetDone, IFSelect_ItemsByEntity
 from OCC.Core.StlAPI import StlAPI_Writer
 from OCC.Core.BRepMesh import BRepMesh_IncrementalMesh
-from OCC.Core.IGESControl import IGESControl_Reader
-from optparse import OptionParser
 
 """
 Converts STEP to STL file format.
@@ -51,7 +50,7 @@ def step_to_stl(input_filename, # input STEP (AP203/AP214 file) path
         failsonly = False
         step_reader.PrintCheckLoad(failsonly, IFSelect_ItemsByEntity)
         step_reader.PrintCheckTransfer(failsonly, IFSelect_ItemsByEntity) 
-        ok = step_reader.TransferRoot(1)
+        step_reader.TransferRoot(1)
         _nbs = step_reader.NbShapes()
         myshape = step_reader.Shape(1)
         print("File readed")
