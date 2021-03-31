@@ -72,7 +72,7 @@ def step_to_stl(input_filename, # input STEP (AP203/AP214 file) path
     print("Written")
 
 if __name__ == '__main__':
-    # Setting up the parcer
+    # Setting up the parser
     parser = OptionParser()
     parser.add_option("-i", "--input", dest = "input_filename",
                       help = "Input STEP file name")
