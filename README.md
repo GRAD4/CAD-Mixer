@@ -8,7 +8,7 @@
     <a href="https://github.com/GRAD4/CAD-Mixer/issues" alt="Issues">
         <img src="https://img.shields.io/github/issues/GRAD4/CAD-Mixer" /></a>
     <! -- Widget setting need to be enabled to show discord info, see here: https://vimeo.com/364220040 -->
-    <a href="https://discord.gg/HjJCwm5">
+    <a href="https://discord.gg/xgkuw5x6">
         <img src="https://img.shields.io/discord/801140631262068747?logo=discord"
             alt="chat on Discord"></a>
 </p>
